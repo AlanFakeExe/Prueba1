@@ -1,0 +1,56 @@
+{% extends 'inicio/encabezado.html' %}
+
+{% block titulo %}Consultar Comentarios{% endblock %}
+
+
+<!-- Imagen en menú lateral -->
+{% block imagen %}
+    {% load static %}
+    
+    {% static 'inicio/images/comentario.png' %}
+{% endblock %}
+{%block descripcion_modulo%}
+            comentario
+			{%endblock%}
+
+{% block principaluno %}
+<div class="page-content">
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Comentarios Recibidos</h3>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="panel panel-default">
+    <div class="panel-heading"><h6 class="panel-title">Listado de Comentarios</h6></div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Mensaje</th>
+                    <th></th>
+                     <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comentario in comentarios %}
+                <tr>
+                    <td>{{ comentario.usuario }}</td>
+                    <td>{{ comentario.mensaje }}</td>
+                    <th>editar</th>
+                <td class="text-center"><a href="{%url 'Eliminar' comentario.id%}">Eliminar</a></td>
+             </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">No hay comentarios aún.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
